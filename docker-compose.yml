@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb:latest
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: pass
+    ports:
+      - 3306:3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/karol/IntelliJProjects/db_data_mariadb
+      o: bind
